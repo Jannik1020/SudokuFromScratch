@@ -5,6 +5,8 @@ canvas.width = canvas.height;
 
 const subdivision = 9;
 
+const controller = new Controller(canvas, subdivision);
+
 function divideField(ctx, lineNumber = 1) {
     const canvasSide = canvas.height;
     ctx.fillStyle = "black";
