@@ -76,9 +76,15 @@ class Controller {
 
         })
 
-        addEventListener("keypress", e =>{
-            if (e.key in ["1","2","3","4","5","6","7","8","9"] && this.activeField[0] > -1){
+        addEventListener("keydown", e =>{
+            if (["1","2","3","4","5","6","7","8","9"].includes(e.key) && this.activeField[0] > -1) {
+
                 this.tiles[this.activeField[1]][this.activeField[0]].number = e.key;
+            }
+            if (['!','"', '§', "$", "%", "&", "/", "(", ")"].includes(e.key)&& this.activeField[0] > -1) {
+                if(e.shiftKey){
+                    this.tiles[this.activeField[1]][this.activeField[0]].notes.push(['!','"', '§', "$", "%", "&", "/", "(", ")"].indexOf(e.key)+1);
+                }
             }
         })
     }
