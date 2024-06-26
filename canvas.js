@@ -3,10 +3,10 @@ const canvas = document.getElementById("canvas");
 canvas.height = canvasHeight
 canvas.width = canvasWidth
 
-
-const controller = new Controller(canvas, subdivision);
 const tiles = []
 fillTiles();
+
+const controller = new Controller(tiles, canvas, subdivision);
 
 function fillTiles() {
     for (let i = 0; i < subdivision; i++) {
@@ -55,13 +55,13 @@ function draw() {
 
     if(controller.fieldPosition[0] > -1 ) {
         const activeField = controller.fieldPosition;
-        tiles[activeField[1]][activeField[0]].selected = true;
+        tiles[activeField[1]][activeField[0]].hovered = true;
     }
 
     tiles.forEach(tileRow => {
         tileRow.forEach(tile => {
             tile.draw(ctx)
-            tile.selected = false
+            tile.hovered = false
         }
         )
     })

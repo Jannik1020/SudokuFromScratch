@@ -1,6 +1,7 @@
 class Controller {
-    constructor(canvas, subdivision) {
+    constructor(tiles, canvas, subdivision) {
         this.canvas = canvas;
+        this.tiles = tiles;
         this.subdivision = subdivision;
 
         this.mouseX = 0;
@@ -14,6 +15,7 @@ class Controller {
         this.onCanvas = false;
 
         this.fieldPosition = [0,0];
+        this.activeField = [-1,-1];
 
         this.#addEventListeners();
     }
@@ -59,8 +61,25 @@ class Controller {
         });
 
         addEventListener("click", (e) => {
-            console.log(this.onCanvas);
-            console.log(this.fieldPosition);
+
+            tiles.forEach(tileRow => {
+                tileRow.forEach(tile => {
+                    tile.selected = false
+                }
+                )
+            })
+
+            if(this.onCanvas) {
+                this.activeField = this.fieldPosition
+                this.tiles[this.activeField[1]][this.activeField[0]].selected = true;
+            }
+
+        })
+
+        addEventListener("keypress", e =>{
+            if (e.key in ["1","2","3","4","5","6","7","8","9"] && this.activeField[0] > -1){
+                this.tiles[this.activeField[1]][this.activeField[0]].number = e.key;
+            }
         })
     }
 
