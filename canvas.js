@@ -1,11 +1,24 @@
 const canvas = document.getElementById("canvas");
 
-canvas.height = innerHeight;
-canvas.width = canvas.height;
+canvas.height = canvasHeight
+canvas.width = canvasWidth
 
-const subdivision = 9;
 
 const controller = new Controller(canvas, subdivision);
+const tiles = []
+fillTiles();
+
+function fillTiles() {
+    for (let i = 0; i < subdivision; i++) {
+        tiles.push([])
+        const Y = tileHeight * i
+        for (let j = 0; j < subdivision; j++) {
+            const X = tileWidth * j;
+            tiles[i].push(new Field(X, Y))
+        }
+
+    }
+}
 
 function divideField(ctx, lineNumber = 1) {
     const canvasSide = canvas.height;
@@ -32,12 +45,26 @@ function divideField(ctx, lineNumber = 1) {
         divideField(ctx, lineNumber+1);
     }
 }
+console.log(tiles)
 function draw() {
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     divideField(ctx);
+
+    if(controller.fieldPosition[0] > -1 ) {
+        const activeField = controller.fieldPosition;
+        tiles[activeField[1]][activeField[0]].selected = true;
+    }
+
+    tiles.forEach(tileRow => {
+        tileRow.forEach(tile => {
+            tile.draw(ctx)
+            tile.selected = false
+        }
+        )
+    })
 
     window.requestAnimationFrame(draw)
 }

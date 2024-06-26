@@ -23,16 +23,16 @@ class Controller {
         var fieldCol = 0
 
         for (let i = 0; i < this.subdivision; i++) {
-            if(this.mouseX-this.canvasX >= this.canvasWidth/subdivision * i
-                && this.mouseX-this.canvasX < this.canvasWidth/subdivision * (i+1)) {
+            if(this.mouseX-this.canvasX >= tileWidth * i
+                && this.mouseX-this.canvasX < tileWidth * (i+1)) {
                 fieldRow = i
                 break;
             }
         }
 
         for (let i = 0; i < this.subdivision; i++) {
-            if(this.mouseY-this.canvasY >= this.canvasHeight/subdivision * i
-                && this.mouseY-this.canvasY < this.canvasHeight/subdivision * (i+1)) {
+            if(this.mouseY-this.canvasY >= tileHeight * i
+                && this.mouseY-this.canvasY < tileHeight * (i+1)) {
                 fieldCol = i
                 break;
             }
