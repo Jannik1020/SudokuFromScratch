@@ -1,3 +1,15 @@
 body{
+    width: 100vw;
+    height: 100vh;
     background: darkslategray;
+    overflow: hidden;
+}
+
+#canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
 }

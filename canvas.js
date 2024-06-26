@@ -1,11 +1,13 @@
 const canvas = document.getElementById("canvas");
 
-canvas.height = document.height;
+canvas.height = innerHeight;
 canvas.width = canvas.height;
 
-const ctx = canvas.getContext("2d");
 
-function draw(ctx) {
+function draw() {
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     window.requestAnimationFrame(draw)
 }
 
